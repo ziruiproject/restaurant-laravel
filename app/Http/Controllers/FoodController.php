@@ -14,6 +14,13 @@ class FoodController extends Controller
         ]);
     }
 
+    public function show($id)
+    {
+        return view('food.show')->with([
+            'food' => Food::findOrfail($id)
+        ]);
+    }
+
     public function create()
     {
         return view('food.create');
