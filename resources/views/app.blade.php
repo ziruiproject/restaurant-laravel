@@ -8,7 +8,7 @@
     <title>Laravel</title>
 </head>
 <body>
-    <main>
+    <main class="p-4">
         @yield('content')
     </main>
     @yield('script')
