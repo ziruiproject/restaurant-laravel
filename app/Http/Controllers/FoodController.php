@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Food;
+use App\Models\Image;
 use Illuminate\Http\Request;
 
 class FoodController extends Controller
@@ -34,12 +35,17 @@ class FoodController extends Controller
 
         $imageName = $request->file('image')->store('images');
 
-        Food::create([
+        $food = Food::create([
             'name' => $request->name,
             'price' => $request->price,
-            'image' => $imageName,
             'description' => $request->description
         ]);
+
+        $image = Image::create([
+            'path' => $imageName
+        ]);
+
+        $food->images()->attach($image->id);
 
         return redirect()->route('food.index');
     }
