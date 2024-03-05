@@ -17,9 +17,11 @@ class FoodController extends Controller
 
     public function show($id)
     {
+        $food = Food::findOrfail($id);
         return view('food.show')->with([
-            'food' => Food::findOrfail($id),
-            'amount' => 1
+            'food' => $food,
+            'amount' => 1,
+            'price' => 'Rp' . number_format($food->price, 0, '.', '.')
         ]);
     }
 
