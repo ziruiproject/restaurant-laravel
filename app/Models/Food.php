@@ -16,4 +16,9 @@ class Food extends Model
     {
         return $this->belongsToMany(Image::class);
     }
+
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class);
+    }
 }
