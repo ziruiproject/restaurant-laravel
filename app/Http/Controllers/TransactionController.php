@@ -13,6 +13,7 @@ class TransactionController extends Controller
 {
     public function create(Request $request)
     {
+        ddd($request);
         $transaction = Transaction::create([
             'meja_id' => 1,
             'food_id' => $request->id,

@@ -18,7 +18,8 @@ class FoodController extends Controller
     public function show($id)
     {
         return view('food.show')->with([
-            'food' => Food::findOrfail($id)
+            'food' => Food::findOrfail($id),
+            'amount' => 1
         ]);
     }
 
