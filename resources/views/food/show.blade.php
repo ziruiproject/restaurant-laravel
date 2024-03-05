@@ -34,7 +34,7 @@
                 </div>
             </div>
 
-            <form method="post" action="{{ route('transaction.create') }}">
+            <form method="post" action="{{ route('cart.add') }}">
                 @csrf
                 <input type="hidden" name="id" value="{{$food->id}}">
                 <input type="hidden" name="amount" id="amount-form" value="1">

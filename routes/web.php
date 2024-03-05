@@ -27,3 +27,5 @@ Route::post('/foods/create', [FoodController::class, 'store'])->name('food.store
 Route::get('/checkout/{id}', [TransactionController::class, 'checkout'])->name('checkout');
 
 Route::post('/transaction/create', [TransactionController::class, 'create'])->name('transaction.create');
+
+Route::post('/carts/add', [CartController::class, 'store'])->name('cart.add');
