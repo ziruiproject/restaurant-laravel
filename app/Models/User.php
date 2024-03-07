@@ -46,6 +46,6 @@ class User extends Authenticatable
 
     public function foods(): BelongsToMany
     {
-        return $this->belongsToMany(Food::class);
+        return $this->belongsToMany(Food::class)->withPivot('amount')->withTimestamps();
     }
 }

@@ -29,3 +29,4 @@ Route::get('/checkout/{id}', [TransactionController::class, 'checkout'])->name('
 Route::post('/transaction/create', [TransactionController::class, 'create'])->name('transaction.create');
 
 Route::post('/carts/add', [CartController::class, 'store'])->name('cart.add');
+Route::get('/carts/show', [CartController::class, 'show'])->name('cart.show');
