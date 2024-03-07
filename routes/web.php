@@ -30,3 +30,4 @@ Route::post('/transaction/create', [TransactionController::class, 'create'])->na
 
 Route::post('/carts/add', [CartController::class, 'store'])->name('cart.add');
 Route::get('/carts/show', [CartController::class, 'show'])->name('cart.show');
+Route::patch('/carts', [CartController::class, 'update'])->name('cart.update');

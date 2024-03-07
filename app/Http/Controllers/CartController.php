@@ -18,7 +18,7 @@ class CartController extends Controller
         } else {
             $cart[$request->id] = [
                 'name' => $food->name,
-                'amount' => 1,
+                'amount' => $request->amount,
                 'price' => $food->price,
                 'image' => $food->images()->first()->path
             ];
@@ -34,5 +34,17 @@ class CartController extends Controller
         return view('cart.show')->with([
             'foods' => User::find(1)->foods()->get()
         ]);
+    }
+
+    public function update(Request $request)
+    {
+        if ($request->id && $request->amount) {
+            $cart = session()->get('cart');
+            $cart[$request->id]['amount'] = $request->amount;
+            session()->put('cart', $cart);
+            session()->flash('success', 'Cart updated successfully');
+            return response()->json(['adalah' => 'benar']);
+        }
+        return response()->json(['hi' => 'halo']);
     }
 }
