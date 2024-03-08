@@ -47,11 +47,11 @@
                         let counterMinusElem = document.querySelector('.min-amount{{ $id }}');
                         let counterPlusElem = document.querySelector('.add-amount{{ $id }}');
                         let count = {{ $details['amount'] }};
-                        let total = {{session('total')}}
+                        let total = {{ session('total') }}
 
                         counterPlusElem.addEventListener("click", () => {
                             count++;
-                            total += {{$details['price']}}
+                            total += {{ $details['price'] }}
                             updateDisplay();
                         });
 
@@ -61,13 +61,13 @@
                             }
 
                             count--;
-                            total -= {{$details['price']}}
+                            total -= {{ $details['price'] }}
                             updateDisplay();
                         });
 
                         function updateDisplay() {
                             counterDisplayElem.innerText = count;
-                            totalElem.innerText = "Total = " + total;
+                            totalElem.innerText = "Total = " + formatCurrency(total)
                             updateSessionCount(count)
                         }
 
@@ -94,10 +94,15 @@
                                     console.error('Error:', error);
                                 });
                         }
+
+                        function formatCurrency(amount) {
+                            return "Rp" + amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                        }
                     });
                 </script>
             @endforeach
-            <h2 id="total">Total = {{session('total')}}</h2>
+            <h2 id="total" class="text-2xl font-bold">Total = {{ 'Rp' . number_format(session('total'), 0, '.', '.') }}
+            </h2>
         </div>
         <form method="post" action="{{ route('cart.add') }}">
             @csrf
