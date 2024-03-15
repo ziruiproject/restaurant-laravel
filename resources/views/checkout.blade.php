@@ -28,27 +28,18 @@
 
 @section('script')
     <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
-    <script type="text/javascript">
+    <script type="text/javascript" data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}">
         document.getElementById('pay-button').onclick = function() {
             // SnapToken acquired from previous step
             snap.pay('{{ $transaction->snap_token }}', {
                 // Optional
                 onSuccess: function(result) {
-                    console.log(result);
-                    /* You may add your own js here, this is just example */
-                    document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
                 },
                 // Optional
                 onPending: function(result) {
-                    console.log(result);
-                    /* You may add your own js here, this is just example */
-                    document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
                 },
                 // Optional
                 onError: function(result) {
-                    console.log(result);
-                    /* You may add your own js here, this is just example */
-                    document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
                 }
             });
         };

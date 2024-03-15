@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Midtrans\Snap;
-use Midtrans\Config;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -13,13 +11,21 @@ class TransactionController extends Controller
 {
     public function create(Request $request)
     {
-        ddd($request);
-        $transaction = Transaction::create([
-            'meja_id' => 1,
-            'food_id' => $request->id,
-            'price' => $request->price,
-            'status' => 'pending',
-        ]);
+        $foods = session()->get('cart');
+
+        $gross_amount = 0;
+
+        foreach ($foods as $id => $food) {
+            $transaction = Transaction::create([
+                'meja_id' => 1,
+                'food_id' => $id,
+                'amount' => $food['amount'],
+                'price' => $food['price'],
+                'status' => 'pending',
+            ]);
+
+            $gross_amount += ($food['amount'] * $food['price']);
+        }
 
         // Set your Merchant Server Key
         \Midtrans\Config::$serverKey = config('midtrans.serverKey');
@@ -33,7 +39,7 @@ class TransactionController extends Controller
         $params = array(
             'transaction_details' => array(
                 'order_id' => rand(),
-                'gross_amount' => $request->price,
+                'gross_amount' => $gross_amount,
             )
         );
 

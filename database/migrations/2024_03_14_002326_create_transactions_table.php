@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('meja_id');
             $table->integer('food_id');
             $table->integer('price');
+            $table->integer('amount');
             $table->string('status');
             $table->string('snap_token')->nullable();
             $table->timestamps();

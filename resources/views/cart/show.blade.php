@@ -104,7 +104,7 @@
             <h2 id="total" class="text-2xl font-bold">Total = {{ 'Rp' . number_format(session('total'), 0, '.', '.') }}
             </h2>
         </div>
-        <form method="post" action="{{ route('cart.add') }}">
+        <form method="post" action="{{ route('transaction.create') }}">
             @csrf
             <button type="submit" id="total-amount"
                 class="rounded-2xl w-full py-4 text-lg font-bold text-center bg-yellow-400 shadow-md">
