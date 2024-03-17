@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\Food;
 
 class TransactionController extends Controller
 {
@@ -14,6 +14,7 @@ class TransactionController extends Controller
         $foods = session()->get('cart');
 
         $gross_amount = 0;
+        $orderId = rand();
 
         foreach ($foods as $id => $food) {
             $transaction = Transaction::create([
@@ -22,6 +23,7 @@ class TransactionController extends Controller
                 'amount' => $food['amount'],
                 'price' => $food['price'],
                 'status' => 'pending',
+                'order_id' => $orderId
             ]);
 
             $gross_amount += ($food['amount'] * $food['price']);
@@ -38,23 +40,42 @@ class TransactionController extends Controller
 
         $params = array(
             'transaction_details' => array(
-                'order_id' => rand(),
+                'order_id' => $orderId,
                 'gross_amount' => $gross_amount,
             )
         );
 
         $snapToken = \Midtrans\Snap::getSnapToken($params);
 
-        $transaction->snap_token = $snapToken;
-        $transaction->save();
+        Transaction::where('order_id', $orderId)->update(['snap_token' => $snapToken]);
 
-        return redirect()->route('checkout', ['id' => $transaction->id]);
+        return redirect()->route('checkout', ['id' => $orderId]);
     }
 
     public function checkout($id)
     {
-        return view('checkout')->with([
-            'transaction' => Transaction::find($id)
-        ]);
+        return view('checkout')->with(
+            [
+                'transaction' => DB::table('transactions')
+                    ->where('order_id', '=', $id)
+                    ->limit(1)
+                    ->get()
+                    ->first()
+            ]
+        );
+    }
+
+    public function success($id)
+    {
+        Transaction::where('order_id', $id)->update(['status' => 'success']);
+
+        return view('transaction.success');
+    }
+
+    public function failed($id)
+    {
+        Transaction::where('order_id', $id)->update(['status' => 'failed']);
+
+        return view('transaction.failed');
     }
 }

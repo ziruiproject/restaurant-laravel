@@ -18,19 +18,27 @@ use App\Http\Controllers\TransactionController;
 |
 */
 
+//  FOODS : GET
 Route::get('/foods/create', [FoodController::class, 'create']);
 Route::get('/', [FoodController::class, 'index'])->name('food.index');
 Route::get('/foods/{id}', [FoodController::class, 'show'])->name('food.show');
 
+// FOODS : POST
 Route::post('/foods/create', [FoodController::class, 'store'])->name('food.store');
 
+// TRANSACTION : GET
 Route::get('/checkout/{id}', [TransactionController::class, 'checkout'])->name('checkout');
+Route::get('/transaction/{id}/success', [TransactionController::class, 'success'])->name('transaction.success');
+Route::get('/transaction/{id}/failed', [TransactionController::class, 'failed'])->name('transaction.failed');
 
+// TRANSACTION : POST
 Route::post('/transaction/create', [TransactionController::class, 'create'])->name('transaction.create');
-Route::get('/transaction/success', function () {
-    return view('transaction.success');
-})->name('transaction.success');
 
-Route::post('/carts/add', [CartController::class, 'store'])->name('cart.add');
+// CARTS : GET
 Route::get('/carts/show', [CartController::class, 'show'])->name('cart.show');
+
+// CARTS : POST
+Route::post('/carts/add', [CartController::class, 'store'])->name('cart.add');
+
+// CARTS : PATCH
 Route::patch('/carts', [CartController::class, 'update'])->name('cart.update');

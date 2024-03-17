@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('amount');
             $table->string('status');
             $table->string('snap_token')->nullable();
+            $table->string('order_id')->nullable();
             $table->timestamps();
         });
     }

@@ -34,12 +34,14 @@
             snap.pay('{{ $transaction->snap_token }}', {
                 // Optional
                 onSuccess: function(result) {
+                    window.location.href = '{{route('transaction.success', ['id' => $transaction->order_id])}}'
                 },
                 // Optional
                 onPending: function(result) {
                 },
                 // Optional
                 onError: function(result) {
+                    window.location.href = '{{route('transaction.failed', ['id' => $transaction->order_id])}}'
                 }
             });
         };
