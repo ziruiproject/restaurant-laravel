@@ -9,6 +9,7 @@ export default defineConfig({
         }),
     ],
     server: {
-        host: "192.168.0.181"
+        // host: "192.168.0.181"
+        host: "10.12.209.41"
     },
 });
