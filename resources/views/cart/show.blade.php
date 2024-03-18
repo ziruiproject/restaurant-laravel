@@ -1,45 +1,43 @@
 @extends('app')
 @section('content')
-    <section>
-        <div class="flex flex-col">
-            <h1 class=" pb-8 text-4xl font-bold">Keranjang</h1>
+    <section class="relative flex flex-col min-h-screen">
+        <h1 class="text-2xl font-bold text-black">Cart</h1>
+        <div class="bg-background grid grid-cols-1 divide-y">
             @foreach ((array) session('cart') as $id => $details)
                 <div class="gap-x-4 flex py-3">
-                    <img class="aspect-square h-32 rounded-lg" src="{{ asset('storage/' . $details['image']) }}"
-                        alt="">
-                    <div class="gap-y-2 flex flex-col w-full">
-                        <span class="text-3xl font-extrabold text-gray-700">{{ $details['name'] }}</span>
+                    <div class="bg-orange-shade min-w-max h-fit rounded-2xl p-2">
+                        <img class="aspect-square h-16 rounded-full" src="{{ asset('storage/' . $details['image']) }}"
+                            alt="">
+                    </div>
+                    <div class="flex flex-col w-full">
+                        <span class="text-xl font-semibold text-black">{{ $details['name'] }}</span>
                         <span
-                            class="text-2xl text-gray-700">{{ 'Rp' . number_format($details['price'], 0, '.', '.') }}</span>
-                        <div class="w-fit gap-x-2 flex self-end" data-id="{{ $id }}">
+                            class="text-lg font-medium text-black">{{ 'Rp' . number_format($details['price'], 0, '.', '.') }}</span>
+                        <div class="w-fit gap-x-2 flex self-start" data-id="{{ $id }}">
                             <button class={{ 'min-amount' . $id }}>
-                                <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" stroke-width="1.5"
-                                    viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#C2BBBD">
-                                    <path d="M8 12H16" stroke="#C2BBBD" stroke-width="1.5" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                    </path>
-                                    <path
-                                        d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
-                                        stroke="#C2BBBD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                    </path>
+                                <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px"
+                                    viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#ec7905"
+                                    stroke-width="1.5">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M12 1.25C6.06294 1.25 1.25 6.06294 1.25 12C1.25 17.9371 6.06294 22.75 12 22.75C17.9371 22.75 22.75 17.9371 22.75 12C22.75 6.06294 17.9371 1.25 12 1.25ZM8 11.25C7.58579 11.25 7.25 11.5858 7.25 12C7.25 12.4142 7.58579 12.75 8 12.75H16C16.4142 12.75 16.75 12.4142 16.75 12C16.75 11.5858 16.4142 11.25 16 11.25H8Z"
+                                        fill="#ec7905"></path>
                                 </svg>
                             </button>
                             <span id={{ 'amount' . $id }}
                                 class="amount update-cart py-2 text-xl font-bold text-center">{{ $details['amount'] }}</span>
                             <button class={{ 'add-amount' . $id }} class="focus:outline-none">
-                                <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" stroke-width="1.5"
-                                    viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#FACC15">
-                                    <path d="M8 12H12M16 12H12M12 12V8M12 12V16" stroke="#FACC15" stroke-width="1.5"
-                                        stroke-linecap="round" stroke-linejoin="round"></path>
-                                    <path
-                                        d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
-                                        stroke="#FACC15" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                    </path>
+                                <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px"
+                                    viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#ec7905"
+                                    stroke-width="1.5">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M12 1.25C6.06294 1.25 1.25 6.06294 1.25 12C1.25 17.9371 6.06294 22.75 12 22.75C17.9371 22.75 22.75 17.9371 22.75 12C22.75 6.06294 17.9371 1.25 12 1.25ZM12.75 8C12.75 7.58579 12.4142 7.25 12 7.25C11.5858 7.25 11.25 7.58579 11.25 8V11.25H8C7.58579 11.25 7.25 11.5858 7.25 12C7.25 12.4142 7.58579 12.75 8 12.75H11.25V16C11.25 16.4142 11.5858 16.75 12 16.75C12.4142 16.75 12.75 16.4142 12.75 16V12.75H16C16.4142 12.75 16.75 12.4142 16.75 12C16.75 11.5858 16.4142 11.25 16 11.25H12.75V8Z"
+                                        fill="#ec7905"></path>
                                 </svg>
                             </button>
                         </div>
                     </div>
                 </div>
+
                 <script>
                     document.addEventListener("DOMContentLoaded", function() {
                         let counterDisplayElem = document.getElementById('amount{{ $id }}');
@@ -101,16 +99,19 @@
                     });
                 </script>
             @endforeach
-            <h2 id="total" class="text-2xl font-bold">Total = {{ 'Rp' . number_format(session('total'), 0, '.', '.') }}
-            </h2>
         </div>
-        <form method="post" action="{{ route('transaction.create') }}">
-            @csrf
-            <button type="submit" id="total-amount"
-                class="rounded-2xl w-full py-4 text-lg font-bold text-center bg-yellow-400 shadow-md">
+        <div class="gap-y-2 shadow-full rounded-t-3xl fixed bottom-0 left-0 flex flex-col w-full p-4 pt-8 bg-white">
+            <span id="total" class="text-xl font-medium text-black">Total =  
+                {{ 'Rp' . number_format(session('total'), 0, '.', '.') }}
+            </span>
+            <form method="post" action="{{ route('transaction.create') }}">
+                @csrf
+                <button type="submit" id="total-amount"
+                class="rounded-3xl bg-orange w-full py-3 text-lg font-bold text-center text-white shadow-md">
                 Checkout
             </button>
         </form>
+    </div>
     </section>
 @endsection
 

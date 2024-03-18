@@ -31,7 +31,7 @@
                                 stroke="#7f7f7f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                         </svg>
                     </div>
-                    <input type="text" placeholder="Search Category or Menu" class="focus:ring-orange-shade outline-orange-shade w-full px-4 py-3 text-sm font-light rounded-full">
+                    <input type="text" placeholder="Search Category or Menu" class="focus:ring-orange-shade outline-orange-shade rounded-3xl w-full px-4 py-3 text-sm font-light">
                 </form>
             </div>
             <div class="gap-x-2 grid grid-cols-4">
