@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Food;
 use App\Models\Image;
 use Illuminate\Http\Request;
@@ -11,7 +12,8 @@ class FoodController extends Controller
     public function index()
     {
         return view('food.index')->with([
-            'foods' => Food::all()
+            'foods' => Food::all(),
+            'categories' => Category::all()
         ]);
     }
 
@@ -21,7 +23,8 @@ class FoodController extends Controller
         return view('food.show')->with([
             'food' => $food,
             'amount' => 1,
-            'price' => 'Rp' . number_format($food->price, 0, '.', '.')
+            'price' => 'Rp' . number_format($food->price, 0, '.', '.'),
+            'categories' => $food->categories()->get()
         ]);
     }
 

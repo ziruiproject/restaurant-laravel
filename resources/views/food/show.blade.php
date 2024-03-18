@@ -7,6 +7,11 @@
             <div class="gap-y-4 flex flex-col">
                 <h3 class="text-4xl font-extrabold">{{ $food->name }}</h3>
                 <h3 class="text-3xl font-bold">{{ $price }}</h3>
+                <div>
+                    @foreach ($categories as $category)
+                        <span>{{$category->name}}</span>
+                    @endforeach
+                </div>
                 <p class="pb-4 font-semibold">{{ $food->description }}</p>
                 <div class="flex items-center justify-between align-middle">
                     <span class="text-xl font-bold">Jumlah pesanan</span>
