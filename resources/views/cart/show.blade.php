@@ -101,17 +101,17 @@
             @endforeach
         </div>
         <div class="gap-y-2 shadow-full rounded-t-3xl fixed bottom-0 left-0 flex flex-col w-full p-4 pt-8 bg-white">
-            <span id="total" class="text-xl font-medium text-black">Total =  
+            <span id="total" class="text-xl font-medium text-black">Total =
                 {{ 'Rp' . number_format(session('total'), 0, '.', '.') }}
             </span>
             <form method="post" action="{{ route('transaction.create') }}">
                 @csrf
                 <button type="submit" id="total-amount"
-                class="rounded-3xl bg-orange w-full py-3 text-lg font-bold text-center text-white shadow-md">
-                Checkout
-            </button>
-        </form>
-    </div>
+                    class="rounded-3xl bg-orange w-full py-3 text-lg font-bold text-center text-white shadow-md">
+                    Checkout
+                </button>
+            </form>
+        </div>
     </section>
 @endsection
 
