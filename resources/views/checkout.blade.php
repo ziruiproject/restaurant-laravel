@@ -2,22 +2,22 @@
 
 @section('content')
     <section class="relative flex flex-col min-h-screen">
-        <div class="gap-y-2 flex flex-col">
+        <div class="gap-y-2 grid grid-cols-2">
             <div>
                 <span class="font-extralight text-black">Current Orders</span>
                 <h1 class="text-2xl font-bold text-black">{{ '#' . $orderId }}</h1>
             </div>
-            <div>
+            <div class="text-end">
                 <span class="font-extralight text-black">Table No</span>
                 <h1 class="text-2xl font-bold text-black">{{ '#' . $table }}</h1>
             </div>
             <div>
+                <span class="font-extralighttext-black">Total Price</span>
+                <h1 class="text-2xl font-bold text-black">{{ $total }}</h1>
+            </div>
+            <div class="text-end">
                 <span class="font-extralight text-black">Amount</span>
                 <h1 class="text-2xl font-bold text-black">{{ $amount }}</h1>
-            </div>
-            <div>
-                <span class="font-extralight text-black">Total Price</span>
-                <h1 class="text-2xl font-bold text-black">{{ $total }}</h1>
             </div>
         </div>
         <div class="bg-background grid grid-cols-1 pt-4 divide-y">
