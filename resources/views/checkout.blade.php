@@ -2,8 +2,25 @@
 
 @section('content')
     <section class="relative flex flex-col min-h-screen">
-        <h1 class="text-2xl font-bold text-black">Cart</h1>
-        <div class="bg-background grid grid-cols-1 divide-y">
+        <div class="gap-y-2 flex flex-col">
+            <div>
+                <span class="font-extralight text-black">Current Orders</span>
+                <h1 class="text-2xl font-bold text-black">{{ '#' . $orderId }}</h1>
+            </div>
+            <div>
+                <span class="font-extralight text-black">Table No</span>
+                <h1 class="text-2xl font-bold text-black">{{ '#' . $table }}</h1>
+            </div>
+            <div>
+                <span class="font-extralight text-black">Amount</span>
+                <h1 class="text-2xl font-bold text-black">{{ $amount }}</h1>
+            </div>
+            <div>
+                <span class="font-extralight text-black">Total Price</span>
+                <h1 class="text-2xl font-bold text-black">{{ $total }}</h1>
+            </div>
+        </div>
+        <div class="bg-background grid grid-cols-1 pt-4 divide-y">
             @foreach ((array) session('cart') as $id => $details)
                 <div class="gap-x-4 flex py-3">
                     <div class="bg-orange-shade min-w-max h-fit rounded-2xl p-2">
@@ -18,11 +35,10 @@
                     </div>
                 </div>
             @endforeach
-            <div class="gap-y-2 shadow-full rounded-t-3xl fixed bottom-0 left-0 flex flex-col w-full p-4 pt-8 bg-white border-none">
-                <span id="total" class="text-xl font-medium text-black">Total =
-                    {{ 'Rp' . number_format(session('total'), 0, '.', '.') }}
-                </span>
-                <button id="pay-button" class="rounded-3xl bg-orange w-full py-3 text-lg font-bold text-center text-white shadow-md">
+            <div
+                class="gap-y-2 shadow-full rounded-t-3xl fixed bottom-0 left-0 flex flex-col w-full p-4 pt-8 bg-white border-none">
+                <button id="pay-button"
+                    class="rounded-3xl bg-orange w-full py-3 text-lg font-bold text-center text-white shadow-md">
                     Bayar
                 </button>
             </div>
@@ -35,18 +51,18 @@
     <script type="text/javascript" data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}">
         document.getElementById('pay-button').onclick = function() {
             // SnapToken acquired from previous step
-            snap.pay('{{ $transaction->snap_token }}', {
+            snap.pay('{{ $snapToken }}', {
                 // Optional
                 onSuccess: function(result) {
                     window.location.href =
-                        '{{ route('transaction.success', ['id' => $transaction->order_id]) }}'
+                        '{{ route('transaction.success', ['id' => $orderId]) }}'
                 },
                 // Optional
                 onPending: function(result) {},
                 // Optional
                 onError: function(result) {
                     window.location.href =
-                        '{{ route('transaction.failed', ['id' => $transaction->order_id]) }}'
+                        '{{ route('transaction.failed', ['id' => $orderId]) }}'
                 }
             });
         };
