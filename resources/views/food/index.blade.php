@@ -22,7 +22,7 @@
                     </svg>
                 </a>
                 <form action="" class="relative w-full">
-                    <div class="left-[90%] absolute inset-y-0 flex items-center w-4/5 pointer-events-none">
+                    <div class="left-[90%] absolute inset-y-0 flex items-center pointer-events-none">
                         <svg width="24px" height="24px" viewBox="0 0 24 24" stroke-width="1.5" fill="none"
                             xmlns="http://www.w3.org/2000/svg" color="#7f7f7f">
                             <path d="M17 17L21 21" stroke="#7f7f7f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -47,7 +47,7 @@
             @foreach ($foods as $food)
                 <a href="{{ route('food.show', ['id' => $food->id]) }}"
                     class="gap-y-2 rounded-3xl flex flex-col items-center p-3 pb-6 bg-white">
-                    <img class="aspect-square w-fit rounded-full"
+                    <img class="aspect-square h-auto rounded-full"
                         src="{{ asset('storage/' . $food->images()->first()->path) }}" alt="">
                     <div class="flex flex-col pt-4">
                         <h3 class="text-xl font-bold text-center text-black">{{ $food->name }}</h3>
