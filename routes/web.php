@@ -34,6 +34,9 @@ Route::get('/transaction/{id}/failed', [TransactionController::class, 'failed'])
 // TRANSACTION : POST
 Route::post('/transaction/create', [TransactionController::class, 'create'])->name('transaction.create');
 
+// TRANSACTION : PATCH
+Route::patch('/transaction/{id}/update', [TransactionController::class, 'update'])->name('transaction.update');
+
 // CARTS : GET
 Route::get('/carts/show', [CartController::class, 'show'])->name('cart.show');
 

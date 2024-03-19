@@ -6,6 +6,7 @@ use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Table;
 
 class TransactionController extends Controller
 {
@@ -17,8 +18,8 @@ class TransactionController extends Controller
         $orderId = rand();
 
         foreach ($foods as $id => $food) {
-            $transaction = Transaction::create([
-                'meja_id' => 1,
+            Transaction::create([
+                'meja_id' => 0,
                 'food_id' => $id,
                 'amount' => $food['amount'],
                 'price' => $food['price'],
@@ -47,20 +48,30 @@ class TransactionController extends Controller
 
         $snapToken = \Midtrans\Snap::getSnapToken($params);
 
-        Transaction::where('order_id', $orderId)->update(['snap_token' => $snapToken]);
+        Transaction::where('order_id', $orderId)->update([
+            'snap_token' => $snapToken,
+            'meja_id' => $request->table,
+        ]);
 
         return redirect()->route('checkout', ['id' => $orderId]);
     }
 
     public function checkout($id)
     {
+        $transactions = DB::table('transactions')
+            ->where('order_id', '=', $id)
+            ->get();
+
+        $transaction = $transactions->first();
+
         return view('checkout')->with(
             [
-                'transaction' => DB::table('transactions')
-                    ->where('order_id', '=', $id)
-                    ->limit(1)
-                    ->get()
-                    ->first()
+                'orderId' => $transaction->order_id,
+                'snapToken' => $transaction->snap_token,
+                'tables' => Table::all(),
+                'table' => $transaction->meja_id,
+                'total' => 'Rp' . number_format(session('total'), 0, '.', '.'),
+                'amount' => $transactions->sum('amount')
             ]
         );
     }
@@ -77,5 +88,14 @@ class TransactionController extends Controller
         Transaction::where('order_id', $id)->update(['status' => 'failed']);
 
         return view('transaction.failed');
+    }
+
+    public function setSuccess(Request $request, $id)
+    {
+        if (!$request->dine == 0) {
+            Transaction::where('order_id', $id)->update(['meja_id' => 0]);
+        }
+
+        Transaction::where('order_id', $id)->update(['meja_id' => $request->meja]);
     }
 }

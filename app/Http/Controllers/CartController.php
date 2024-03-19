@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Food;
-use App\Models\User;
+use App\Models\Table;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -35,7 +35,11 @@ class CartController extends Controller
 
     public function show()
     {
-        return view('cart.show');
+        if (session()->missing('cart')) {
+            return view('cart.empty');
+        }
+
+        return view('cart.show')->with(['tables' => Table::all()]);
     }
 
     public function update(Request $request)
