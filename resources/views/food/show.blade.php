@@ -1,42 +1,48 @@
 @extends('app')
 
 @section('content')
-    <section class="flex justify-center h-screen">
+    <section class="bg-background flex justify-center min-h-screen">
         <div class="gap-y-4 flex flex-col">
-            <img class="aspect-square" src="{{ asset('storage/' . $food->images()->first()->path) }}" alt="">
+            <img class="aspect-square rounded-3xl m-2" src="{{ asset('storage/' . $food->images()->first()->path) }}"
+                alt="">
             <div class="gap-y-4 flex flex-col">
-                <h3 class="text-4xl font-extrabold">{{ $food->name }}</h3>
-                <h3 class="text-3xl font-bold">{{ $price }}</h3>
-                <div>
-                    @foreach ($categories as $category)
-                        <span>{{$category->name}}</span>
-                    @endforeach
-                </div>
-                <p class="pb-4 font-semibold">{{ $food->description }}</p>
                 <div class="flex items-center justify-between align-middle">
-                    <span class="text-xl font-bold">Jumlah pesanan</span>
+                    <h3 class="text-3xl font-bold">{{ $food->name }}</h3>
+                    <span class=" text-orange text-xl font-bold">{{ $price }}</span>
+                </div>
+                <div class="gap-y-2 flex flex-col">
+                    <span class="font-medium text-black">Categories</span>
+                    <div class="grid grid-cols-5 gap-3">
+                        @foreach ($categories as $category)
+                            <span
+                                class="bg-orange rounded-3xl min-w-fit text-orange-shade px-3 py-2 text-sm text-center">{{ $category->name }}
+                            </span>
+                        @endforeach
+                    </div>
+                </div>
+                <div class="gap-y-1 flex flex-col">
+                    <span class="font-medium text-black">Description</span>
+                    <p class="text-darker-gray pb-4 font-light">{{ $food->description }}</p>
+                </div>
+                <div class="flex items-center justify-between align-middle">
+                    <span class="text-xl font-bold">Amount</span>
                     <div class="w-fit gap-x-2 flex items-center self-center justify-center">
                         <button class="min-amount">
-                            <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" stroke-width="1.5"
-                                viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#C2BBBD">
-                                <path d="M8 12H16" stroke="#C2BBBD" stroke-width="1.5" stroke-linecap="round"
-                                    stroke-linejoin="round"></path>
-                                <path
-                                    d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
-                                    stroke="#C2BBBD" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                </path>
+                           <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" color="#ec7905" stroke-width="1.5">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M12 1.25C6.06294 1.25 1.25 6.06294 1.25 12C1.25 17.9371 6.06294 22.75 12 22.75C17.9371 22.75 22.75 17.9371 22.75 12C22.75 6.06294 17.9371 1.25 12 1.25ZM8 11.25C7.58579 11.25 7.25 11.5858 7.25 12C7.25 12.4142 7.58579 12.75 8 12.75H16C16.4142 12.75 16.75 12.4142 16.75 12C16.75 11.5858 16.4142 11.25 16 11.25H8Z"
+                                    fill="#ec7905"></path>
+                            </svg>
                             </svg>
                         </button>
                         <span id="amount" class="py-2 text-xl font-bold text-center">1</span>
                         <button class="add-amount">
-                            <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" stroke-width="1.5"
-                                viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#FACC15">
-                                <path d="M8 12H12M16 12H12M12 12V8M12 12V16" stroke="#FACC15" stroke-width="1.5"
-                                    stroke-linecap="round" stroke-linejoin="round"></path>
-                                <path
-                                    d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
-                                    stroke="#FACC15" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                </path>
+                           <?xml version="1.0" encoding="UTF-8"?><svg width="24px" height="24px" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg" color="#ec7905" stroke-width="1.5">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M12 1.25C6.06294 1.25 1.25 6.06294 1.25 12C1.25 17.9371 6.06294 22.75 12 22.75C17.9371 22.75 22.75 17.9371 22.75 12C22.75 6.06294 17.9371 1.25 12 1.25ZM12.75 8C12.75 7.58579 12.4142 7.25 12 7.25C11.5858 7.25 11.25 7.58579 11.25 8V11.25H8C7.58579 11.25 7.25 11.5858 7.25 12C7.25 12.4142 7.58579 12.75 8 12.75H11.25V16C11.25 16.4142 11.5858 16.75 12 16.75C12.4142 16.75 12.75 16.4142 12.75 16V12.75H16C16.4142 12.75 16.75 12.4142 16.75 12C16.75 11.5858 16.4142 11.25 16 11.25H12.75V8Z"
+                                            fill="#ec7905"></path>
                             </svg>
                         </button>
                     </div>
@@ -48,7 +54,7 @@
                     <input type="hidden" name="amount" id="amount-form" value="1">
                     <input type="hidden" name="price" value="{{ $food->price }}">
                     <button type="submit" id="total-amount"
-                        class="rounded-2xl w-full py-4 text-lg font-bold text-center bg-yellow-400 shadow-md">
+                        class="rounded-3xl bg-orange w-full py-3 text-lg font-bold text-center text-white shadow-md"
                         Tambah Pesanan - {{ $price }}
                     </button>
                 </form>
