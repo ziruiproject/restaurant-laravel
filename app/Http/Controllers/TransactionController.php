@@ -80,6 +80,9 @@ class TransactionController extends Controller
     {
         Transaction::where('order_id', $id)->update(['status' => 'success']);
 
+        session()->flush();
+        session()->save();
+
         return view('transaction.success');
     }
 
@@ -88,14 +91,5 @@ class TransactionController extends Controller
         Transaction::where('order_id', $id)->update(['status' => 'failed']);
 
         return view('transaction.failed');
-    }
-
-    public function setSuccess(Request $request, $id)
-    {
-        if (!$request->dine == 0) {
-            Transaction::where('order_id', $id)->update(['meja_id' => 0]);
-        }
-
-        Transaction::where('order_id', $id)->update(['meja_id' => $request->meja]);
     }
 }
