@@ -55,4 +55,23 @@ class FoodController extends Controller
 
         return redirect()->route('food.index');
     }
+
+
+    public function search(Request $request)
+    {
+        $foodQuery = Food::query();
+
+        $searchParams = $request->query('name');
+
+        if ($searchParams) {
+            $foodQuery = Food::search($searchParams);
+        }
+
+        $foods = $foodQuery->get();
+
+        return view('food.index')->with([
+            'foods' => $foods,
+            'categories' => Category::all()
+        ]);
+    }
 }
