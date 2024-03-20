@@ -21,6 +21,7 @@ use App\Http\Controllers\TransactionController;
 //  FOODS : GET
 Route::get('/foods/create', [FoodController::class, 'create']);
 Route::get('/', [FoodController::class, 'index'])->name('food.index');
+Route::get('/search', [FoodController::class, 'search'])->name('food.search');
 Route::get('/foods/{id}', [FoodController::class, 'show'])->name('food.show');
 
 // FOODS : POST
