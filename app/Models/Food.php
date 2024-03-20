@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use PhpParser\Node\Expr\FuncCall;
+use Laravel\Scout\Searchable;
 
 class Food extends Model
 {
-    use HasFactory;
+    use HasFactory, Searchable;
 
     protected $guarded = [];
 
@@ -26,5 +26,12 @@ class Food extends Model
     public function categories()
     {
         return $this->belongsToMany(Category::class);
+    }
+
+    public function toSearchableArray()
+    {
+        return [
+            'name' => $this->name,
+        ];
     }
 }
