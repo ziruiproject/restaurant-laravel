@@ -21,7 +21,7 @@
                             stroke="#7f7f7f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                     </svg>
                 </a>
-                <form action="" class="relative w-full">
+                <form action="{{ route('food.search') }}" class="relative w-full">
                     <div class="left-[90%] absolute inset-y-0 flex items-center pointer-events-none">
                         <svg width="24px" height="24px" viewBox="0 0 24 24" stroke-width="1.5" fill="none"
                             xmlns="http://www.w3.org/2000/svg" color="#7f7f7f">
@@ -31,7 +31,7 @@
                                 stroke="#7f7f7f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                         </svg>
                     </div>
-                    <input type="text" placeholder="Search Category or Menu" class="focus:ring-orange-shade outline-orange-shade rounded-3xl w-full px-4 py-3 text-sm font-light">
+                    <input type="text" name="name" placeholder="Search Category or Menu" class="focus:ring-orange-shade outline-orange-shade rounded-3xl w-full px-4 py-3 text-sm font-light">
                 </form>
             </div>
             <div class="gap-x-2 grid grid-cols-4">
