@@ -35,6 +35,7 @@ class FoodController extends Controller
 
     public function store(Request $request)
     {
+        dd($request->all()['image']->hashName());
         $request->validate([
             'image' => 'required|image|mimes:png,jpg,jpeg|'
         ]);

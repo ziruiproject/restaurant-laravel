@@ -43,9 +43,4 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-
-    public function foods(): BelongsToMany
-    {
-        return $this->belongsToMany(Food::class)->withPivot('amount')->withTimestamps();
-    }
 }
