@@ -5,6 +5,7 @@ use App\Models\Transaction;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\FoodController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\TransactionController;
 
 /*
@@ -46,3 +47,6 @@ Route::post('/carts/add', [CartController::class, 'store'])->name('cart.add');
 
 // CARTS : PATCH
 Route::patch('/carts', [CartController::class, 'update'])->name('cart.update');
+
+// DASHBOARD : GET
+Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
