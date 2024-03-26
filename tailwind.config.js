@@ -18,6 +18,8 @@ export default {
       'gray': '#ebebeb',
       'orange': '#ec7905',
       'orange-shade': '#fef0e1',
+      'red': '#eb4335',
+      'green': '#62ce9b'
     }
   },
   plugins: [],
