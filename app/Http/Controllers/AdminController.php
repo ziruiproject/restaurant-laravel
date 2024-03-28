@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Food;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -13,6 +15,9 @@ class AdminController extends Controller
 
     public function menu()
     {
-        return view('admin.menu');
+        return view('admin.menu')->with([
+            'foods' => Food::all(),
+            'categories' => Category::all()
+        ]);
     }
 }

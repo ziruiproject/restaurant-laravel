@@ -5,7 +5,7 @@
             <h1 class="text-3xl font-bold text-black">Essi Resto</h1>
             <span class="text-darker-gray text-lg">Tuesday, 11 Jan 2024</span>
         </div>
-        <section class="auto-cols-max gap-x-12 grid grid-cols-4">
+        <section class="auto-cols-max gap-x-12 grid grid-cols-4 pt-8">
             {{-- REVENUE --}}
             <div class="gap-y-4 rounded-3xl flex flex-col w-full p-6 bg-white">
                 <div class="gap-x-12 flex justify-between">

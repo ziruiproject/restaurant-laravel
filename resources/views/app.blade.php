@@ -15,10 +15,9 @@
 </head>
 
 <body>
-    <main class="bg-background p-4">
+    <main class="bg-background min-h-screen p-4 font-sans">
         @yield('content')
     </main>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     @yield('script')
 </body>
 

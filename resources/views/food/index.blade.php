@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-    <section class="min-h-screen">
+    <section>
         <div class="gap-y-3 flex flex-col pb-4">
             <div class="gap-x-6 flex items-center justify-between w-full">
                 <a href="{{ route('cart.show') }}" class="w-fit">

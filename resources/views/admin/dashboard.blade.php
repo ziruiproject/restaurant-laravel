@@ -1,7 +1,7 @@
 @extends('app')
 @section('content')
     <section class="place-items-start relative min-h-screen grid grid-cols-[auto,1fr] -m-4">
-        <nav class="w-fit gap-y-4 flex flex-col justify-center h-full p-5 bg-white">
+        <nav class="w-fit gap-y-4 sticky top-0 flex flex-col justify-center h-full max-h-screen col-span-1 p-5 overflow-y-hidden bg-white">
             <a href="{{ route('dashboard.home') }}" class="{{ Route::currentRouteName() == 'dashboard.home' ? 'db-active-btn' : 'db-inactive-btn' }}">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8">
                     <path
