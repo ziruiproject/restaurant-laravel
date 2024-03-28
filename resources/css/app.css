@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .db-inactive-btn {
+        @apply rounded-2xl flex flex-col items-center justify-center p-4 align-middle text-darker-gray fill-darker-gray;
+    }
+    .db-active-btn {
+        @apply bg-orange-shade rounded-2xl flex flex-col items-center justify-center p-4 align-middle text-orange fill-orange;
+    }
+}

@@ -49,4 +49,5 @@ Route::post('/carts/add', [CartController::class, 'store'])->name('cart.add');
 Route::patch('/carts', [CartController::class, 'update'])->name('cart.update');
 
 // DASHBOARD : GET
-Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+Route::get('/dashboard/home', [AdminController::class, 'home'])->name('dashboard.home');
+Route::get('/dashboard/menus', [AdminController::class, 'menu'])->name('dashboard.menus');
