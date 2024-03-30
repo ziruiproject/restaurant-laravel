@@ -30,7 +30,7 @@ class CartController extends Controller
         session()->put('cart', $cart);
         session()->put('total', $total);
 
-        return redirect()->route('food.index');
+        return redirect()->back();
     }
 
     public function show()

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Food;
+use App\Models\Table;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,8 @@ class AdminController extends Controller
     {
         return view('admin.menu')->with([
             'foods' => Food::all(),
-            'categories' => Category::all()
+            'categories' => Category::all(),
+            'tables' => Table::all()
         ]);
     }
 }

@@ -4,9 +4,18 @@
 
 @layer components {
     .db-inactive-btn {
-        @apply rounded-2xl flex flex-col items-center justify-center p-4 align-middle text-darker-gray fill-darker-gray;
+        @apply rounded-2xl text-darker-gray fill-darker-gray flex flex-col items-center justify-center p-4 align-middle;
     }
     .db-active-btn {
-        @apply bg-orange-shade rounded-2xl flex flex-col items-center justify-center p-4 align-middle text-orange fill-orange;
+        @apply bg-orange-shade rounded-2xl text-orange fill-orange flex flex-col items-center justify-center p-4 align-middle;
+    }
+    .order-option {
+        @apply bg-orange-shade focus:outline-none rounded-3xl px-4 py-3 text-lg;
+    }
+    select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        text-indent: 1px;
+        text-overflow: '';
     }
 }
