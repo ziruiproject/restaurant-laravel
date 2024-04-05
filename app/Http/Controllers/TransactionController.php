@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Food;
+use App\Models\Table;
+use App\Models\Category;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\Table;
 
 class TransactionController extends Controller
 {
@@ -64,7 +66,16 @@ class TransactionController extends Controller
 
         $transaction = $transactions->first();
 
-        return view('checkout')->with(
+        $view = view('checkout');
+
+        if (!auth()->user()) {
+            $view = view('admin.checkout')->with([
+                'foods' => Food::all(),
+                'categories' => Category::all()
+            ]);
+        }
+
+        return $view->with(
             [
                 'orderId' => $transaction->order_id,
                 'snapToken' => $transaction->snap_token,

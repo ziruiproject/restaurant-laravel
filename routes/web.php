@@ -51,3 +51,4 @@ Route::patch('/carts', [CartController::class, 'update'])->name('cart.update');
 // DASHBOARD : GET
 Route::get('/dashboard/home', [AdminController::class, 'home'])->name('dashboard.home');
 Route::get('/dashboard/menus', [AdminController::class, 'menu'])->name('dashboard.menus');
+Route::get('/dashboard/menus/checkout/{id}', [AdminController::class, 'checkout'])->name('dashboard.menus.checkout');

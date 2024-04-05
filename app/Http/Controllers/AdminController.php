@@ -16,7 +16,7 @@ class AdminController extends Controller
 
     public function menu()
     {
-        return view('admin.menu')->with([
+        return view('admin.order')->with([
             'foods' => Food::all(),
             'categories' => Category::all(),
             'tables' => Table::all()
